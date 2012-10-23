@@ -2,5 +2,12 @@
 bin
 obj
 
+# Visual Studio user files
+*.csproj.user
+*.suo
+
+# Resharper folder
+_ReSharper.*
+
 # mstest test results
 TestResults
