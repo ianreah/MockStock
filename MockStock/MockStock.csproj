@@ -75,6 +75,7 @@
   <ItemGroup>
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Default.aspx" />
+    <Content Include="js\main.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js">
       <DependentUpon>jquery-1.6.4.js</DependentUpon>
