@@ -2,13 +2,13 @@
 	var stockHub = $.connection.stockHub;
 	
 	// Declare a function on the hub so the server can invoke it
-	stockHub.addMessage = function (message) {
-		$('#messages').append('<li>' + message + '</li>');
+	stockHub.updatePrice = function (stockPrice) {
+	    $('#stocks').append('<li>' + stockPrice + '</li>');
 	};
 
-	$("#broadcast").click(function () {
+	$("#subscribe").click(function () {
 		// Call the method on the server
-		stockHub.send($('#msg').val());
+	    stockHub.subscribe($('#symbol').val().toUpperCase());
 	});
 
 	// Start the connection

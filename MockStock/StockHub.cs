@@ -4,13 +4,13 @@ namespace MockStock
 {
 	public class StockHub : Hub
 	{
-		public void Send(string message)
+		public void Subscribe(string symbol)
 		{
 			// Send data just to the calling client...
-			Caller.addMessage("Server Notification: I got your message");
+            Caller.updatePrice("Server Notification: I got your subscription");
 
 			// Broadcast data to all clients...
-			Clients.addMessage(message);
+            Clients.updatePrice(symbol);
 		}
 	}
 }
