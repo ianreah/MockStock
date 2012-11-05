@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockStock", "MockStock\Mock
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockStock.Console", "MockStock.Console\MockStock.Console.csproj", "{6FF1ADF6-C4BF-4694-916A-A59C921A61FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockStock.Core", "MockStock.Core\MockStock.Core.csproj", "{AD52033E-0C42-4C16-866D-736E8DB29D40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6FF1ADF6-C4BF-4694-916A-A59C921A61FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FF1ADF6-C4BF-4694-916A-A59C921A61FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FF1ADF6-C4BF-4694-916A-A59C921A61FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD52033E-0C42-4C16-866D-736E8DB29D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD52033E-0C42-4C16-866D-736E8DB29D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD52033E-0C42-4C16-866D-736E8DB29D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD52033E-0C42-4C16-866D-736E8DB29D40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD425090-1646-4AC4-8785-175878554FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD425090-1646-4AC4-8785-175878554FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD425090-1646-4AC4-8785-175878554FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
