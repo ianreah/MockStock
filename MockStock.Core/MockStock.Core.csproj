@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroupSubscriptionManager.cs" />
+    <Compile Include="IPriceFeedGenerator.cs" />
+    <Compile Include="ISubscriptionStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockPrice.cs" />
   </ItemGroup>
