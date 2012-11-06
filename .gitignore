@@ -3,7 +3,7 @@ bin
 obj
 
 # Visual Studio user files
-*.csproj.user
+*.user
 *.suo
 
 # Resharper folder
