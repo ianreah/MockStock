@@ -1,11 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MockStock.Core;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace MockStock.Tests
 {
-	[TestClass]
+	[TestFixture]
 	public class GroupSubscriptionManagerTests
 	{
 		private IPriceFeedGenerator priceFeedGenerator;
@@ -13,7 +13,7 @@ namespace MockStock.Tests
 
 		private GroupSubscriptionManager subscriptionManagerUnderTest;
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInitialize()
 		{
 			priceFeedGenerator = Substitute.For<IPriceFeedGenerator>();
@@ -22,28 +22,28 @@ namespace MockStock.Tests
 			subscriptionManagerUnderTest = new GroupSubscriptionManager(priceFeedGenerator, subscriptionStore);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Constructor_GeneratesNoFeeds()
 		{
 			// Assert
 			priceFeedGenerator.DidNotReceiveWithAnyArgs().Generate(null);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Constructor_AddsNoSubscriptions()
 		{
 			// Assert
 			subscriptionStore.DidNotReceiveWithAnyArgs().AddSubscription(null, null);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Constructor_AddNoSubscribers()
 		{
 			// Assert
 			subscriptionStore.DidNotReceiveWithAnyArgs().AddSubscriber(null, null);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionDoesntExist_GeneratesTheFeed()
 		{
 			// Act
@@ -53,7 +53,7 @@ namespace MockStock.Tests
 			priceFeedGenerator.Received(1).Generate("XYZ");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionDoesntExist_AddsTheSubscription()
 		{
 			// Arrange
@@ -66,7 +66,7 @@ namespace MockStock.Tests
 			subscriptionStore.Received(1).AddSubscription("XYZ", priceFeed);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionDoesntExist_AddsTheSubscriber()
 		{
 			// Act
@@ -76,7 +76,7 @@ namespace MockStock.Tests
 			subscriptionStore.Received(1).AddSubscriber("XYZ", "client_1");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionExists_DoesntGenerateTheFeed()
 		{
 			// Arrange
@@ -89,7 +89,7 @@ namespace MockStock.Tests
 			priceFeedGenerator.DidNotReceive().Generate("XYZ");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionExists_DoesntAddsTheSubscription()
 		{
 			// Arrange
@@ -103,7 +103,7 @@ namespace MockStock.Tests
 			subscriptionStore.DidNotReceive().AddSubscription("XYZ", priceFeed);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Subscribe_WhenSubscriptionExists_AddsTheSubscriber()
 		{
 			// Arrange
@@ -117,7 +117,7 @@ namespace MockStock.Tests
 		}
 
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_LastSubscriber_DisposesTheFeed()
 		{
 			// Arrange
@@ -130,7 +130,7 @@ namespace MockStock.Tests
 			priceFeed.Received(1).Dispose();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_LastSubscriber_RemovesTheSubscription()
 		{
 			// Act
@@ -140,7 +140,7 @@ namespace MockStock.Tests
 			subscriptionStore.Received(1).RemoveSubscription("XYZ");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_LastSubscriber_RemovesTheSubscriber()
 		{
 			// Act
@@ -150,7 +150,7 @@ namespace MockStock.Tests
 			subscriptionStore.Received(1).RemoveSubscriber("XYZ", "client_1");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_NotLastSubscriber_DoesntDisposeTheFeed()
 		{
 			// Arrange
@@ -164,7 +164,7 @@ namespace MockStock.Tests
 			priceFeed.DidNotReceive().Dispose();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_NotLastSubscriber_DoesntRemoveTheSubscription()
 		{
 			// Arrange
@@ -177,7 +177,7 @@ namespace MockStock.Tests
 			subscriptionStore.DidNotReceive().RemoveSubscription("XYZ");
 		}
 
-		[TestMethod]
+		[Test]
 		public void Unsubscribe_NotLastSubscriber_RemovesTheSubscriber()
 		{
 			// Arrange
