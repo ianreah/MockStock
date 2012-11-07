@@ -5,6 +5,11 @@ namespace MockStock.Core
 		private readonly IPriceFeedGenerator priceFeedGenerator;
 		private readonly ISubscriptionStore subscriptionStore;
 
+		// Pessimistic locking to make Subscribe and Unsubscribe atomic & mutually exclusive.
+		// In the real world it should just need to manage concurrent subscription and
+		// unsubscription to the same symbol?
+		private static readonly object lockObject = new object();
+
 		public GroupSubscriptionManager(IPriceFeedGenerator priceFeedGenerator, ISubscriptionStore subscriptionStore)
 		{
 			this.priceFeedGenerator = priceFeedGenerator;
@@ -13,21 +18,27 @@ namespace MockStock.Core
 
 		public void Subscribe(string symbol, string clientId)
 		{
-			if(!subscriptionStore.Exists(symbol))
+			lock (lockObject)
 			{
-				subscriptionStore.AddSubscription(symbol, priceFeedGenerator.Generate(symbol));
-			}
+				if (!subscriptionStore.Exists(symbol))
+				{
+					subscriptionStore.AddSubscription(symbol, priceFeedGenerator.Generate(symbol));
+				}
 
-			subscriptionStore.AddSubscriber(symbol, clientId);
+				subscriptionStore.AddSubscriber(symbol, clientId);
+			}
 		}
 
 		public void Unsubscribe(string symbol, string clientId)
 		{
-			subscriptionStore.RemoveSubscriber(symbol, clientId);
-
-			if(!subscriptionStore.AnySubscribers(symbol))
+			lock (lockObject)
 			{
-				subscriptionStore.RemoveSubscription(symbol).Dispose();
+				subscriptionStore.RemoveSubscriber(symbol, clientId);
+
+				if (!subscriptionStore.AnySubscribers(symbol))
+				{
+					subscriptionStore.RemoveSubscription(symbol).Dispose();
+				}
 			}
 		}
 	}
