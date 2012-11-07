@@ -11,6 +11,7 @@
 <body>
 	<input type="text" id="symbol" maxlength="5"/>
 	<input type="button" id="subscribe" value="subscribe" />
+	<input type="button" id="unsubscribe" value="unsubscribe" />
 	
 	<ul id="stocks"></ul>
 

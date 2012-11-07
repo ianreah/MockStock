@@ -1,16 +1,30 @@
-﻿using SignalR.Hubs;
+﻿using MockStock.Core;
+using SignalR.Hubs;
 
 namespace MockStock
 {
 	public class StockHub : Hub
 	{
+		private static readonly ISubscriptionStore subscriptionStore = new InMemorySubscriptionStore();
+		private readonly GroupSubscriptionManager subscriptionManager;
+
+		public StockHub()
+		{
+			subscriptionManager = new GroupSubscriptionManager(
+				new PriceFeedGenerator(p => Clients[p.Symbol].updatePrice(p)),
+				subscriptionStore);
+		}
+
 		public void Subscribe(string symbol)
 		{
-			// Send data just to the calling client...
-            Caller.updatePrice("Server Notification: I got your subscription");
+			subscriptionManager.Subscribe(symbol, Context.ConnectionId);
+			Groups.Add(Context.ConnectionId, symbol);
+		}
 
-			// Broadcast data to all clients...
-            Clients.updatePrice(symbol);
+		public void Unsubscribe(string symbol)
+		{
+			subscriptionManager.Unsubscribe(symbol, Context.ConnectionId);
+			Groups.Remove(Context.ConnectionId, symbol);
 		}
 	}
 }
