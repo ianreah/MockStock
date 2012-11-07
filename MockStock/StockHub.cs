@@ -31,7 +31,7 @@ namespace MockStock
 
 		public Task Disconnect()
 		{
-			return Task.Factory.StartNew(() => subscriptionManager.UsubscribeAll(Context.ConnectionId));
+			return Task.Factory.StartNew(() => subscriptionManager.UnsubscribeAll(Context.ConnectionId));
 		}
 	}
 }

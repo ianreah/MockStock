@@ -44,7 +44,7 @@ namespace MockStock.Core
 			}
 		}
 
-		public void UsubscribeAll(string clientId)
+		public void UnsubscribeAll(string clientId)
 		{
 			foreach (var symbol in subscriptionStore.ClientSubscriptions(clientId).ToList())
 			{
