@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Spine.js</id>
+    <version>1.0.8</version>
+    <authors>Alex MacCaw</authors>
+    <owners>Alex MacCaw</owners>
+    <licenseUrl>https://github.com/maccman/spine/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/maccman/spine/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Spine is a lightweight framework for building JavaScript web applications. Spine gives you a MVC structure and then gets out of your way, allowing you to concentrate on the fun stuff, building awesome web applications. Spine is opinionated and, although at first glance it might look similar to other frameworks like Backbone, it actually has quite a different take on things. Spine is tiny, the library comes in at around 500 lines of JavaScript, that's about 2K minified and compressed. However, it's not about size, it's how you use it, and Spine certainly packs a punch!</description>
+    <tags>MVC JavaScript clientside framework browser</tags>
+    <dependencies>
+      <dependency id="jQuery" version="1.7.1" />
+    </dependencies>
+  </metadata>
+</package>
