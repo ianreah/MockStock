@@ -1,9 +1,11 @@
-﻿using MockStock.Core;
+﻿using System;
+using System.Threading.Tasks;
+using MockStock.Core;
 using SignalR.Hubs;
 
 namespace MockStock
 {
-	public class StockHub : Hub
+	public class StockHub : Hub, IDisconnect
 	{
 		private static readonly ISubscriptionStore subscriptionStore = new InMemorySubscriptionStore();
 		private readonly GroupSubscriptionManager subscriptionManager;
@@ -25,6 +27,11 @@ namespace MockStock
 		{
 			subscriptionManager.Unsubscribe(symbol, Context.ConnectionId);
 			Groups.Remove(Context.ConnectionId, symbol);
+		}
+
+		public Task Disconnect()
+		{
+			return Task.Factory.StartNew(() => subscriptionManager.UsubscribeAll(Context.ConnectionId));
 		}
 	}
 }

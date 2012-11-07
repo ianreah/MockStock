@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MockStock.Core
 {
@@ -12,5 +13,7 @@ namespace MockStock.Core
 
 		bool Exists(string symbol);
 		bool AnySubscribers(string symbol);
+
+		IEnumerable<string> ClientSubscriptions(string clientId);
 	}
 }

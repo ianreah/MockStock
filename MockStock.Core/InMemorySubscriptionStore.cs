@@ -45,6 +45,11 @@ namespace MockStock.Core
 			return Exists(symbol) && subscriptions[symbol].Item2.Any();
 		}
 
+		public IEnumerable<string> ClientSubscriptions(string clientId)
+		{
+			return subscriptions.Where(x => x.Value.Item2.ContainsKey(clientId)).Select(x => x.Key);
+		}
+
 		private void ThrowIfSubscriptionAlreadyExists(string symbol)
 		{
 			if (Exists(symbol))

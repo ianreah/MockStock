@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace MockStock.Core
 {
 	public class GroupSubscriptionManager
@@ -39,6 +41,14 @@ namespace MockStock.Core
 				{
 					subscriptionStore.RemoveSubscription(symbol).Dispose();
 				}
+			}
+		}
+
+		public void UsubscribeAll(string clientId)
+		{
+			foreach (var symbol in subscriptionStore.ClientSubscriptions(clientId).ToList())
+			{
+				Unsubscribe(symbol, clientId);
 			}
 		}
 	}
