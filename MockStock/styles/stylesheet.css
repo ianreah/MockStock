@@ -1,3 +1,33 @@
-﻿#symbol {
+﻿body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+#symbol {
     text-transform: uppercase;
+    width: 218px;
+}
+
+#stocks {
+    list-style: none;
+    margin-left: 5px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+#stocks span {
+    display: inline-block;
+    width: 60px;
+}
+
+.symbol {
+    font-weight: bold;
+}
+
+.changeDown {
+    color: red;
+}
+
+.changeUp {
+    color: green;
 }

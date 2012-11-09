@@ -9,15 +9,34 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/stylesheet.css" />
 </head>
 <body>
-	<input type="text" id="symbol" maxlength="5"/>
-	<input type="button" id="subscribe" value="subscribe" />
-	<input type="button" id="unsubscribe" value="unsubscribe" />
-	
-	<ul id="stocks"></ul>
+    <ul id="stocks"></ul>
 
-    <script src="Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <form>
+        <input type="text" id="symbol" maxlength="5" placeholder="symbol"/>
+    </form>
+    
+    <script type="text/x-jquery-tmpl" id="stockTemplate">
+        <li>
+            <span class="symbol">${symbol}</span>
+            <span>{{if price}}${price.toFixed(2)}{{else}}-{{/if}}</span>
+            {{if change}}
+                {{if change < 0}}
+                    <span class="changeDown">${change.toFixed(2)}</span>
+                {{else}}
+                    <span class="changeUp">+${change.toFixed(2)}</span>
+                {{/if}}
+            {{else}}
+                <span>-</span>
+            {{/if}}
+            <input type="button" class="unsubscribe" value="x" />
+        </li>
+    </script>
+
+    <script src="Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery.signalR-0.5.3.js" type="text/javascript"></script>
+    <script src="Scripts/jQuery.tmpl.min.js" type="text/javascript"></script>
     <script src="/signalr/hubs" type="text/javascript"></script>
+    <script src="Scripts/spine/spine.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
