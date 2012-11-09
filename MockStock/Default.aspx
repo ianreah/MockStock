@@ -28,7 +28,7 @@
             {{else}}
                 <span>-</span>
             {{/if}}
-            <input type="button" class="unsubscribe" value="x" />
+            <div class="unsubscribe"></div>
         </li>
     </script>
 

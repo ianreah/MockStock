@@ -5,7 +5,7 @@
 
 #symbol {
     text-transform: uppercase;
-    width: 218px;
+    width: 206px;
 }
 
 #stocks {
@@ -30,4 +30,23 @@
 
 .changeUp {
     color: green;
+}
+
+#stocks > li {
+	position: relative;
+}
+
+.unsubscribe {
+	display: inline-block;
+	background: url('../images/sprite.png');
+	background-position: -0px -0px;
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+}
+
+.unsubscribe:hover {
+	background-position: -0px -24px;
 }
