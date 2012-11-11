@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="images\blacktocat.png" />
     <Content Include="images\sprite.png" />
     <Content Include="js\main.js" />
     <None Include="Scripts\jquery-1.7.2.intellisense.js">
@@ -99,6 +100,7 @@
     <Content Include="Scripts\spine\route.js" />
     <Content Include="Scripts\spine\spine.js" />
     <Content Include="styles\stylesheet.css" />
+    <Content Include="styles\theme.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
