@@ -12,3 +12,5 @@ A (semi-)realistic stock price subscription service would have these key require
 * Multiple clients watching the same stock should see the same prices.
 
 Can I use SignalR and Rx to do this effectively?
+
+[See it in action](http://mockstock.apphb.com/)
