@@ -10,6 +10,16 @@
 		}
 	});
 	
+	// Model instance functions...
+	StockModel.include({
+		// Called when a model is saved or updated...
+		validate: function() {
+			if(!this.symbol) {
+				return "Can't subscribe to an empty stock symbol";
+			}
+		}
+	});
+	
 	// Controller for a single item...
 	// (...stockModel attribute set to an instance of StockModel at construction,
 	// e.g., "new StockController({ stockModel: stockModel })")
@@ -70,16 +80,17 @@
 		subscribe: function (e) {
 		    e.preventDefault();
 
-		    var newSymbol = this.symbol.val().toUpperCase();
+		    var newSymbol = this.symbol.val().toUpperCase().trim();
 
 		    if (StockModel.findBySymbol(newSymbol) == null) {
 			    // Create the model
 			    var newStock = new StockModel({ symbol: newSymbol });
-			    newStock.bind("destroy", this.proxy(this.unsubscribe));
-			    newStock.save();
+			    if (newStock.save()) {
+				    newStock.bind("destroy", this.proxy(this.unsubscribe));
 
-			    // Call the method on the server...
-			    this.stockHub.subscribe(newSymbol);
+				    // Call the method on the server...
+				    this.stockHub.subscribe(newSymbol);
+			    }
 		    }
 			
 			this.symbol.val("");

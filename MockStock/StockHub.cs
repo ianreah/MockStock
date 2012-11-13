@@ -19,8 +19,11 @@ namespace MockStock
 
 		public void Subscribe(string symbol)
 		{
-			subscriptionManager.Subscribe(symbol, Context.ConnectionId);
-			Groups.Add(Context.ConnectionId, symbol);
+			if (SymbolIsValid(symbol))
+			{
+				subscriptionManager.Subscribe(symbol, Context.ConnectionId);
+				Groups.Add(Context.ConnectionId, symbol);
+			}
 		}
 
 		public void Unsubscribe(string symbol)
@@ -32,6 +35,11 @@ namespace MockStock
 		public Task Disconnect()
 		{
 			return Task.Factory.StartNew(() => subscriptionManager.UnsubscribeAll(Context.ConnectionId));
+		}
+
+		private static bool SymbolIsValid(string symbol)
+		{
+			return !string.IsNullOrWhiteSpace(symbol);
 		}
 	}
 }
