@@ -47,18 +47,22 @@
     <script type="text/x-jquery-tmpl" id="stockTemplate">
         <li>
             <span class="symbol">${symbol}</span>
-            <span>{{if price}}${price.toFixed(2)}{{else}}-{{/if}}</span>
-            {{if change}}
-                {{if change < 0}}
-                    <span class="changeDown">${change.toFixed(2)}</span>
-                {{else}}
-                    <span class="changeUp">+${change.toFixed(2)}</span>
-                {{/if}}
-            {{else}}
-                <span>-</span>
-            {{/if}}
+            <div class="dynamicSection">{{tmpl($data) "#stockDynamicSection"}}</div>
             <div class="unsubscribe"></div>
         </li>
+    </script>
+	
+    <script type="text/x-jquery-tmpl" id="stockDynamicSection">
+        <span>{{if price}}${price.toFixed(2)}{{else}}-{{/if}}</span>
+        {{if change}}
+            {{if change < 0}}
+                <span class="changeDown">${change.toFixed(2)}</span>
+            {{else}}
+                <span class="changeUp">+${change.toFixed(2)}</span>
+            {{/if}}
+        {{else}}
+            <span>-</span>
+        {{/if}}
     </script>
 
     <script src="Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>

@@ -24,17 +24,22 @@
 	// (...stockModel attribute set to an instance of StockModel at construction,
 	// e.g., "new StockController({ stockModel: stockModel })")
 	var StockController = Spine.Controller.sub({
+	    elements: {
+	        ".dynamicSection": "dynamicSection"
+	    },
+
 	    events: {
 	        "click .unsubscribe": "unsubscribe"
 	    },
 
 		init: function() {
+			this.replace($("#stockTemplate").tmpl(this.stockModel));
 			this.stockModel.bind("update", this.proxy(this.render));
 		},
 
 		render: function () {
-			// Replace the controller's el with the template output...
-		    this.replace($("#stockTemplate").tmpl(this.stockModel));
+			// Replace the content of the dynamic section...
+			this.dynamicSection.html($("#stockDynamicSection").tmpl(this.stockModel));
 			return this;
 		},
 		
@@ -74,7 +79,7 @@
 
 		add: function (stockModel) {
 		    var controller = new StockController({ stockModel: stockModel });
-			this.stocks.append(controller.render().el);
+			this.stocks.append(controller.el);
 		},
 
 		subscribe: function (e) {

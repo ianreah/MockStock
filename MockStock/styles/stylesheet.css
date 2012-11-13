@@ -45,3 +45,7 @@
 .unsubscribe:hover {
 	background-position: -0px -24px;
 }
+
+.dynamicSection {
+	display: inline-block;
+}
