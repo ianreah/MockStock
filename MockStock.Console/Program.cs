@@ -7,7 +7,8 @@ namespace MockStock.Console
 	{
 		static void Main(string[] args)
 		{
-			var priceFeedGenerator = new PriceFeedGenerator(p =>
+			var priceFeedGenerator = new PriceFeedGenerator();
+			var priceFeedSubscriber = new PriceFeedSubscriber(p =>
 				                                                {
 																	System.Console.Clear();
 																	System.Console.Write("{0}: {1:N2} ", p.Symbol, p.Price);
@@ -24,7 +25,8 @@ namespace MockStock.Console
 																	System.Console.ResetColor();
 																});
 
-			var subscription = priceFeedGenerator.Generate("XYZ");
+			var priceFeed = priceFeedGenerator.Generate("XYZ");
+			var subscription = priceFeedSubscriber.Subscribe(priceFeed);
 
 			System.Console.ReadLine();
 			subscription.Dispose();

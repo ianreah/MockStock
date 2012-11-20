@@ -4,6 +4,6 @@ namespace MockStock.Core
 {
 	public interface IPriceFeedGenerator
 	{
-		IDisposable Generate(string symbol);
+		IObservable<StockPrice> Generate(string symbol);
 	}
 }

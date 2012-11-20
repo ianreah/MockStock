@@ -9,6 +9,7 @@ namespace MockStock.Tests
 	public class GroupSubscriptionManagerTests
 	{
 		private IPriceFeedGenerator priceFeedGenerator;
+		private IPriceFeedSubscriber priceFeedSubscriber;
 		private ISubscriptionStore subscriptionStore;
 
 		private GroupSubscriptionManager subscriptionManagerUnderTest;
@@ -17,9 +18,10 @@ namespace MockStock.Tests
 		public void TestInitialize()
 		{
 			priceFeedGenerator = Substitute.For<IPriceFeedGenerator>();
+			priceFeedSubscriber = Substitute.For<IPriceFeedSubscriber>();
 			subscriptionStore = Substitute.For<ISubscriptionStore>();
 
-			subscriptionManagerUnderTest = new GroupSubscriptionManager(priceFeedGenerator, subscriptionStore);
+			subscriptionManagerUnderTest = new GroupSubscriptionManager(priceFeedGenerator, priceFeedSubscriber, subscriptionStore);
 		}
 
 		[Test]
@@ -193,8 +195,12 @@ namespace MockStock.Tests
 		private IDisposable SetupFeedForSymbol(string symbol)
 		{
 			var disposable = Substitute.For<IDisposable>();
-			priceFeedGenerator.Generate(symbol).Returns(disposable);
+			var observable = Substitute.For<IObservable<StockPrice>>();
+
+			priceFeedSubscriber.Subscribe(observable).Returns(disposable);
+			priceFeedGenerator.Generate(symbol).Returns(observable);
 			subscriptionStore.RemoveSubscription(symbol).Returns(disposable);
+
 			return disposable;
 		}
 

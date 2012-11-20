@@ -5,6 +5,7 @@ namespace MockStock.Core
 	public class GroupSubscriptionManager
 	{
 		private readonly IPriceFeedGenerator priceFeedGenerator;
+		private readonly IPriceFeedSubscriber priceFeedSubscriber;
 		private readonly ISubscriptionStore subscriptionStore;
 
 		// Pessimistic locking to make Subscribe and Unsubscribe atomic & mutually exclusive.
@@ -12,9 +13,10 @@ namespace MockStock.Core
 		// unsubscription to the same symbol?
 		private static readonly object lockObject = new object();
 
-		public GroupSubscriptionManager(IPriceFeedGenerator priceFeedGenerator, ISubscriptionStore subscriptionStore)
+		public GroupSubscriptionManager(IPriceFeedGenerator priceFeedGenerator, IPriceFeedSubscriber priceFeedSubscriber, ISubscriptionStore subscriptionStore)
 		{
 			this.priceFeedGenerator = priceFeedGenerator;
+			this.priceFeedSubscriber = priceFeedSubscriber;
 			this.subscriptionStore = subscriptionStore;
 		}
 
@@ -24,7 +26,10 @@ namespace MockStock.Core
 			{
 				if (!subscriptionStore.Exists(symbol))
 				{
-					subscriptionStore.AddSubscription(symbol, priceFeedGenerator.Generate(symbol));
+					var priceFeed = priceFeedGenerator.Generate(symbol);
+					var subscription = priceFeedSubscriber.Subscribe(priceFeed);
+
+					subscriptionStore.AddSubscription(symbol, subscription);
 				}
 
 				subscriptionStore.AddSubscriber(symbol, clientId);

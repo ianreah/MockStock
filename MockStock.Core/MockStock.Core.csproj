@@ -54,8 +54,10 @@
     <Compile Include="GroupSubscriptionManager.cs" />
     <Compile Include="InMemorySubscriptionStore.cs" />
     <Compile Include="IPriceFeedGenerator.cs" />
+    <Compile Include="IPriceFeedSubscriber.cs" />
     <Compile Include="ISubscriptionStore.cs" />
     <Compile Include="PriceFeedGenerator.cs" />
+    <Compile Include="PriceFeedSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockPrice.cs" />
   </ItemGroup>

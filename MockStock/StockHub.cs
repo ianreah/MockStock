@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MockStock.Core;
 using SignalR.Hubs;
 
@@ -13,7 +12,8 @@ namespace MockStock
 		public StockHub()
 		{
 			subscriptionManager = new GroupSubscriptionManager(
-				new PriceFeedGenerator(p => Clients[p.Symbol].updatePrice(p)),
+				new PriceFeedGenerator(),
+				new PriceFeedSubscriber(p => Clients[p.Symbol].updatePrice(p)),
 				subscriptionStore);
 		}
 
