@@ -13,4 +13,4 @@ A (semi-)realistic stock price subscription service would have these key require
 
 Can I use SignalR and Rx to do this effectively?
 
-[See it in action](http://mockstock.apphb.com/)
+[See it in action](http://mockstock.apphb.com/), or [read the blog post](http://ianreah.com/2012/11/29/MockStock-and-Two-Smoking-Libraries.html).
