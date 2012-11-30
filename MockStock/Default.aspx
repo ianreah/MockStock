@@ -33,7 +33,7 @@
             still get price data. If you enter a real stock symbol the values you see will have no resemblance to 
             the actual value of the stock. Don't make any real investments based on this fake data!</p>
 
-        <p>To find out more check out the <a href ="https://github.com/ianreah/MockStock">code on GitHub</a>, or read the blog post (coming soon!)</p>
+        <p>To find out more check out the <a href ="https://github.com/ianreah/MockStock">code on GitHub</a>, or <a href="http://ianreah.com/2012/11/29/MockStock-and-Two-Smoking-Libraries.html">read the blog post</a>.</p>
       </section>
     </div>
     
