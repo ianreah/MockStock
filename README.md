@@ -1,6 +1,8 @@
 MockStock
 =========
 
+[![Build status](https://ci.appveyor.com/api/projects/status?id=dvcvap4c2w5lueyt)](https://ci.appveyor.com/project/mockstock)
+
 A mock stock price subscription service using SignalR and Rx
 
 ## Requirements ##
